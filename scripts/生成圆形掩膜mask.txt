@@ -1,0 +1,33 @@
+import cv2
+import numpy as np
+
+
+# 输入图片
+imgName = r'Y:\Anime-InPainting\data_origin\0000_00_1.png'
+
+img = cv2.imread(imgName)
+size =128
+# 展示原图
+cv2.imshow("img", img)
+# 创建掩膜
+x = 128//2;y = 128//2;r = 128//4
+mask = np.zeros(img.shape[:2], dtype=np.uint8)
+
+mask = cv2.circle(mask, (x, y), r, (255, 255, 255), -1)
+image = cv2.add(img, np.zeros(np.shape(img), dtype=np.uint8), mask=mask)
+filedir = 'y://Anime-InPainting//mask_myself//'
+for t in range(100):
+    t=str(t);
+    t_buquan =t.zfill(4)
+    for i in range(100):
+
+        # 展示掩膜图片
+        savefliename =filedir + t_buquan+ '_00_'+str(i+1)+'.png'
+        cv2.imwrite(filename=savefliename,img=mask)
+        cv2.imshow("mask", mask)
+        # 展示添加掩膜效果图片
+        cv2.imshow("image", image)
+
+        cv2.waitKey(1)
+        cv2.destroyAllWindows()
+        cv2.imwrite('01.png',mask)

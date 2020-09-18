@@ -1,0 +1,10 @@
+# 遍历得到某个文件夹下的所有文件名
+def getFileName(dirName):
+    import os
+    fileList= []
+    filePath = dirName
+    for i, j, k in os.walk(filePath):
+        # i是当前路径，j得到文件夹名字，k得到文件名字
+        print(i, j, k)
+        fileList.append(k)
+    return fileList[1]

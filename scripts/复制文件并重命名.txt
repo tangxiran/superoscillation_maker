@@ -1,0 +1,35 @@
+# coding=utf-8
+# 将png文件复制并重命名
+# 使用os模块可以获取指定文件夹下所有文件名，有两个方法os.walk()和os.listdir().
+# (1)os.walk可以用于遍历指定文件下所有的子目录、非目录子文件。
+
+import os
+
+filePath = 'F://edge-ours//mask_myself//'
+for i, j, k in os.walk(filePath):
+    # i是当前路径，j得到文件夹名字，k得到文件名字 
+    print(i, j, k)
+
+'''
+#os.listdir()用于返回指定的文件夹下包含的文件或文件夹名字的列表，这个列表按字母顺序排序。
+
+import os
+filePath = 'C://myLearning//pythonLearning201712//carComments//01//'
+os.listdir(filePath)
+'''
+
+import shutil
+
+def copyfile(origin_filename, targetFile):
+    shutil.copy(origin_filename, targetFile)
+
+if __name__ == '__main__':
+    origin_filename = 'F://edge-ours//mask_myself//mask.png'
+    for t in range(100):
+        t = str(t);
+        t_buquan = t.zfill(4)
+        for i in range(100):
+            # 复制1w张
+            savefliename = 'F://edge-ours//mask_myself//' + t_buquan + '_00_' + str(i+1) + '.png'
+            targetFile = savefliename
+            copyfile(origin_filename  ,savefliename)
